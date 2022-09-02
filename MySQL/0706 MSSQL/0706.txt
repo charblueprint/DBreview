@@ -1,0 +1,65 @@
+1.제어판 > Windows Defender > 고급설정 > 인바운드 규칙 > 새 규칙 - 포트 > 특정 로컬 포트 1433을 입력합니다. 
+> 연결 허용 > 다음 계속
+
+2.SQLServerManager15.msc 실행
+
+3.SQL Server 서비스 모두 실행
+4.SQL Server 네트워크 구성 > SQLEXPRESS에 대한 프로토콜 모두 사용- TCP/IP > IP 주소 탭> IPALL > TCP 동적 포트 0을 지움
+> TCP 포트 1433으로 입력
+5. SQL Server 서비스 모두 다시시작 
+
+SQL Management Studio 
+접속할 때 자신의 IP 주소를 입력하여 
+
+회사에서 접속할 때는 '원격 데스크톱 연결'이라는 프로그램으로 연결함
+MSSQL => pwdencrypt('a123456')
+insert into mrp_members values('0','hong',pwdencrypt('a123456'),'홍길동','1234567890','hong@naver.com','01045297614','','2022-06-23 15:23:04');
+
+<MySQL -> MsSQL>
+CREATE TABLE h_member (
+  hidx int NOT NULL,
+  hid nchar(200) NOT NULL,
+  hpass nvarchar(200) NOT NULL,
+  hemail nchar(100) DEFAULT NULL,
+  htel nchar(11) NOT NULL,
+  hcity nchar(2) NOT NULL,
+  haddr ntext NOT NULL,
+  hpart ntext,
+  hage nchar(10) NOT NULL,
+  hindate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  hdrop_date datetime NOT NULL,
+  PRIMARY KEY (hidx,hid)
+)
+
+xls => mssql 
+
+<가져온 엑셀 파일을 새로운 테이블에 투입하기>
+insert into school select * from school2;
+
+tip) 
+excel db를 임시 table로 생성 시 절대 자동 증가값을 생성하면 안됨.
+INDENTITY 임시 table에 생성금지
+복사할 Table에는 INDENTITY 생성하는 것이 원칙
+
+/*응용문제 #1
+교무실 행정실 전화번호 및 팩스번호 모두 없는 data는 삭제합니다.
+=>delete FROM DBO.school WHERE stel1 IS NULL AND stel2 IS NULL AND stel3 IS NULL;
+
+#2 공립학교가 몇 개가 있는지 
+=> SELECT COUNT(*) AS TOTAL FROM DBO.school WHERE part ='공립'; 
+결과)
+	|TOTAL|
+	|:---:|
+	| 361 |
+#3 유치원이 몇 개 있는지
+=>SELECT COUNT(*) AS TOTAL FROM DBO.school WHERE schoolname LIKE '%유치원%';
+결과)
+	|TOTAL|
+	|:---:|
+	| 277 |
+#4 주소로 등록된 값 중 남구에 학급이 몇 개가 있는지  
+=> SELECT COUNT(*)AS TOTAL FROM DBO.school WHERE address LIKE '%남구%' AND schoolname LIKE '%학교';
+결과) 	|TOTAL|
+	|:---:|
+	|  58 |
+*/

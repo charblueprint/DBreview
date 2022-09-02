@@ -1,0 +1,17 @@
+insert into members values ('0','sumin','김수빈','01022345889','sumin@nate.com','2022-07-01 11:04:22','서울');
+insert into members values ('0','kjmins','김정민','01032347789','kjmins@nate.com','2022-07-01 12:14:22','전라도');
+insert into members values ('0','junghyun_kim','김정현','01073425789','junghyun@nate.com','2022-07-02 10:11:22','서울');
+insert into members values ('0','jinsu1004','김진수','0102345789','jinsu1004@nate.com','2022-07-02 12:44:02','서울');
+insert into members values ('0','kim8282_s','김창순','01032348989','kim82@nate.com','2022-07-02 13:04:12','제주도');
+insert into members values ('0','parkdo_h1','박도현','01022348900','parkdo@nate.com','2022-07-02 15:04:32','강원도');
+insert into members values ('0','parkno_1','박은경','01032345789','parkno@naver.com','2022-07-03 09:04:40','경상도');
+insert into members values ('0','yuna_jjang','오유나','01022349089','jjang@naver.com','2022-07-03 10:04:32','경기도');
+insert into members values ('0','kmin_lee','이경민','01022345089','kmin_lee19@nate.com','2022-07-03 12:44:11','서울');
+insert into members values ('0','lkh2452','이경훈','01023443789','lkh2452@gmail.com','2022-07-03 16:04:22','인천');
+insert into members values ('0','leeylim048','이유림','01023457789','leeylim048@nate.com','2022-07-04 17:24:22','서울');
+insert into members values ('0','jiyou_lee79','이지유','01052344889','jiyou_lee79@gmail.com','2022-07-04 19:47:02','세종');
+insert into members values ('0','jinhlee','이진형','01012347789','jinhlee@naver.com','2022-07-04 20:04:20','강원도');
+insert into members values ('0','janghoho','장운','01022345089','janghoho@nate.com','2022-07-05 08:14:12','전라도');
+insert into members values ('0','kihyun_top','조기현','01042343789','kihyun_top@naver.com','2022-07-05 15:54:22','제주도');
+insert into members values ('0','ha_backend','하윤성','0132345959','backend@naver.com','2022-07-06 10:34:21','서울');
+insert into members values ('0','ji_sunhana','황지선','0101345989','sunhana@gmain.com','2022-07-06 11:24:52','부산');

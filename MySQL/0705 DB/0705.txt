@@ -1,0 +1,17 @@
+
+select sum(필드명) from 테이블명 : 필드속성 int (숫자)
+select * from 테이블명 order by 필드명 desc  : 내림차순
+select * from 테이블명 order by 필드명 asc : 오름차순
+
+[group by]
+group by 필드명 : 해당 필드값이 같은 것끼리 모아서 추출함
+해당 같은 이름을 가진 그룹별로 각각 값을 합친 데이터를 출력하는 sql 명령어
+ select 필드명 ,sum(필드명) as 가상의 필드명 from 테이블명 group by 필드명;
+
+[join]
+select 조인테이블(필드명) from 본테이블 as 가상 생성자 join 비교테이블 as 가상 생성자2 on 가상생성자.필드명 = 가상생성자2.필드명
+table join 형태 
+select 필드명 from 테이블명 as 가상의 필드명1 join 테이블명  as 가상의 테이블명2 on 가상의 테이블명1.필드명 =가상의테이블명2.필드명
+where 가상의테이블명.필드명
+
+Mysql 설치할때 홀수번호로 깔자 ex) 5.7.37

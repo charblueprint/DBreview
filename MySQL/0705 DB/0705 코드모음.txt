@@ -1,0 +1,85 @@
+1)
+create table pay (
+p_idx int(8) not null auto_increment,
+p_place char (10) not null,
+p_itemcode varchar(13) not null,
+p_date datetime not null default '0001-01-01 01:00:00',
+p_card varchar(100) not null,
+p_divide char(40) not null, 
+p_price int(6) not null,
+p_result enum ('Y','N','C') not null default 'Y',
+primary key (p_idx)
+);
+1. 상품코드에는 int 쓰면 0부터 시작할 경우 인식이 안되서 앞에 0만 저장이 안됨 int 사용 xx
+2. 구매한 시간의 경우 카드사에서 기록한 시간과 동일해야 함으로 서버시간을 적용하는 timestamp 사용 xx
+
+2)
+create table product(
+c_no int(5) not null auto_increment,
+c_code varchar(15) not null,
+productname varchar(200) not null,
+price int(6) not null,
+c_result enum('Y','N','C') not null default 'Y',
+primary key(c_no)
+);
+
+3)상품코드명 9203101937988 해당사항에 대한 총매출금액을 출력합니다.
+
+4) 
+[응용문제 #2]
+각 상품별 판매 갯수를 출력하시오.
+상품코드, 상품명, 판매갯수
+[응용문제 #3]
+5.22 날짜에 대한 판매 상품을 확인하고 싶어합니다.
+상품코드, 상품명, 판매점, 판매일자, 판매금액
+
+5)
+create table members(
+indx int(6) not null auto_increment,
+mid char(200) not null,
+realname char(100) not null,
+mtel char(11) not null,
+email tinytext not null,
+days datetime not null default '0001-01-01 01:00:00',
+mcity char(100) not null,
+primary key(indx,mid), 
+unique key(mid));
+
+6) 
+create table payok(
+pidx int(6) not null auto_increment,
+pcode varchar(15) not null,
+pname varchar(200) not null,
+buyerid char(200) not null,
+price int(6) not null,
+credit varchar(100) not null,
+p_result enum('Y','N','C') not null default 'Y',
+primary key (pidx) );
+
+7)
+create table points(
+indeex int(6) not null auto_increment,
+mid2 char(200) not null,
+point int(5) not null,
+usepoint enum('Y','N') not null default 'Y',
+whenuse datetime not null default '0001-01-01 01:00:00',  
+primary key (indeex) 
+);
+
+8)
+[응용문제 #4]
+조기현님 포인트 적립 및 사용 금액을 출력하세요.
+아이디, 적립금액, 사용 금액
+
+select p.mid2,sum(p.point) from members as m join points as p on m.mid = p.mid2 where m.realname = '조기현' and p.usepoint='Y';
+select sum(p.point) from members as m join points as p on m.mid = p.mid2 where m.realname = '조기현' and p.usepoint='N';
+
+select p.mid2,sum(p.point),(select sum(p.point) from members as m join points as p on m.mid = p.mid2\
+where m.realname = '조기현' and p.usepoint='N';) from members as m join points as p on m.mid = p.mid2 where m.realname = '조기현' and p.usepoint='Y';
+
+[응용문제 #5]
+해당 사용자가 결제한 내역을 확인하는 부분
+이진형님이 결제한 내역을 검색하게 됩니다.
+아이디, 이름, 상품코드, 상품명, 결제금액, 결제카드
+
+select 

@@ -1,0 +1,10 @@
+insert into payok values ('0','05070227','헤라 블랙 쿠션 리필 15g','jinhlee','26500','신한카드','Y');
+insert into payok values ('0','15073227','아리얼 립앤아이 리무버 패드','lkh2452','8830','국민카드','Y');
+insert into payok values ('0','35072884','코리노스 화이트닝 썬크림','parkdo_h1','14400','하나카드','Y');
+insert into payok values ('0','42313420','하우리즈 스틱청소기','yuna_jjang','228000','현대카드','Y');
+insert into payok values ('0','05070227','헤라 블랙 쿠션 리필 15g','jiyou_lee79','26500','국민카드','Y');
+insert into payok values ('0','35072884','코리노스 화이트닝 썬크림','kmin_lee','14400','신한카드','Y');
+insert into payok values ('0','42313420','하우리즈 스틱청소기','lkh2452','228000','국민카드','Y');
+insert into payok values ('0','15070980','코멧 홈 이동식 3단 빨래바구니','kihyun_top','24900','신한카드','Y');
+insert into payok values ('0','35072884','코리노스 화이트닝 썬크림','sumin','14400','현대카드','Y');
+insert into payok values ('0','05070227','헤라 블랙 쿠션 리필 15g','ha_backend','26500','현대카드','Y');

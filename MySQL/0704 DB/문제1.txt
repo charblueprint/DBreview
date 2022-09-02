@@ -1,0 +1,84 @@
+#문제1
+[내가 한 것]
+create table event(
+eidx int (8) not null auto_increment,
+eid char(200) not null,
+epassword varchar(250) not null,
+etel char(15) not null,
+e_email char(100) not null,
+evaildcode char(10) null,
+esoftpart tinytext null,
+primary key(eidx,eid)
+);
+insert into event values('0','lee',sha('a12345'),'01037689786','donotwaitthetime@gmail.com','','0,1,0');
+
+[샘은 이렇게 하심]
+create table event (
+e_no int (8) not null auto_increment,
+e_id char(30) not null,
+e_pw varchar(100) not nul,
+e_hp char(11) not null,
+e_email varchar(100) notnull,
+e_vip char(10) null,
+e_sw enum('window','office','xbox') not null default ''window'
+=> enum:  필드 생성시 값을 정하여 선택된 값만 받기 위할 때 사용하는 속성
+예) agree1 enum('Y','N') not null default  'N'
+sms_ag enum('Y','N') not null default  'N' 
+e_date timestamp default current_timestamp(),
+e_del datatime  null default '0001-01-01 01:00:00'
+primary key(e_no),
+unique key (e_id)
+);
+
+create table event (
+e_no int (8) not null auto_increment,
+e_id char(30) not null,
+e_pw varchar(100) not null,
+e_hp char(11) not null,
+e_email varchar(100) not null,
+e_vip char(10) null,
+e_sw enum('window','office','xbox') not null default 'window',
+e_date timestamp default current_timestamp(),
+e_del datetime  null default '0001-01-01 01:00:00',
+primary key(e_no, e_id),
+unique key(e_id)
+);
+
+insert into event(e_no,e_id,e_pw,e_hp,e_email,e_vip,e_sw,e_date,e_del)\
+values('0','lee',sha('a12345'),'01037689786','donotwaitthetime@gmail.com','','window','2022-07-04 15:14:00',null);
+
+[문제 2]
+[내가 한 것]
+create table memo(
+n_no int(8) not null auto_increment,
+nsubject tinytext not null,
+nwrite char(30) not null,
+npass char(50) not null,
+ntext text not null,
+primary key(n_no)
+);
+[샘이 한 것]
+create table free(
+fidx int(8) not null auto_increment,
+fsubject varchar(220) not null,
+fwriter char(80) not null,
+fpass char(20) not null,
+ftext text not null,
+fcount int(6) not null default '0', 
+findate date not null default '0001-01-01',
+);
+
+
+#3번
+
+create table mailaddresses(
+midx bigint(15) not null auto_increment,
+mailaddr varchar(5) not null,
+si_do varchar(100) not null,
+si_gungu text not null,
+railroad varchar(200) not null,
+dong varchar(100) not null,
+primary key (midx)
+);
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u jiwonning -p shop > shop.sql

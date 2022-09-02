@@ -1,0 +1,16 @@
+create table travel(
+tidx int(4) not null auto_increment, //자동 증가값
+tname varchar(150) not null,	 // 관광지명
+taddr text not null,	//관광지 주소
+tperson int(8) not null,	// 수용인원
+tcar int(8) not null,		//주차 가능수
+tdate date not null default '0001-01-01', //업데이트 날짜
+primary key(tidx)
+);
+
+<sms database를 생성하기!>
+
+*사용자 추가할때 권한 목록의 갯수는 DB마다 달라서 입력해야하는 갯수도 달라지니 확인하고 입력하기
+create user admin@localhost identified by 'a123456';
+
+http://mekeyace.dothome.co.kr/travel.txt

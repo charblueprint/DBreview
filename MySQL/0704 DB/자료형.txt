@@ -1,0 +1,107 @@
+[int]
+자동 증가값(중복되지 않는 값)
+int (1) : 0~9
+int (2) : 0~99
+int (4) : 0~9999
+
+tinyint(3) : 0~255
+smallint(7) : 0~65535
+mediumint(8) : 0~16000000
+int(10) : 0~4290000000
+bigint(17) : 0~18446744073709551615 => java에서 long역할
+
+[문자]
+char(255)->char(100) : 영어-100자/한글-45자 이렇게 용량이 적다보니 고객명,아이디,닉네임들을 저장할때 사용한다.
+varchar(255) : 영어 : 255/한글 : 200자 (주소)
+tinytext() -> URL 경로, 게시판 제목
+text() -> 한글 : 6만자
+mediumtext() -> 한글  : 11만자
+longtext() -> 한글 : 4억자
+
+[소수점]
+float(12)
+double(38)
+
+[날짜+시간] - 서버시간
+date -> default(구성형태)
+예) date -> default '0001.01.01'
+date default '0001-01-01' =>5.0 이후
+date default '0000-00-00' => 5.0 이전
+
+time -> default(구성형태)
+예) time default '01:00:00'
+time default '010000'
+
+datetime (직접 프로그래머가 시간 기준을 적용함)
+datetime -> default '0001-01-01 01:00:00';
+
+timestamp(자동으로 입력됨 -시간, 날짜)
+timestamp -> default '0001-01-01 01:00:00';
+
+[null, not null]
+pmid char(7) not null  -> pmid 필드명에 6자까지 무조건 필수 값 
+ptext text null -> ptext 필드명 : 다량의 문자를 입력 (필수는 아님)
+그니까 null이면 값이 비워져도 들어가는데 not null이면 비워지면 안된다는..
+그 필수입력이랑 비슷하다고 생각하면 된다.
+
+[자동 증가 값] backend에서 사용하는 유일한 고유값
+auto_increment (table에서 딱 한번 extra) - 절대 중복되지 않음
+
+[KEY]
+primary key [중복되지 않는 값] - auto_increment,회원(아이디)
+ 
+<기획서에 맞춰 만들어보기>
+create table h_member(
+hidx int (8) not null auto_increment,	-자동 증가 값
+hid char(200) not null,		-아이디
+hpass varchar(200) not null,		-패스워드 암호화
+hemail char(100) null,		-이메일 
+htel  char(11) not null,		-전화번호
+hcity char(2) not null,		-거주지역
+hpart tinytext null,			-관심분야(배열)
+hage char(10) not null,		-연령
+hindate timestamp not null default current_timestamp,	-가입일자
+hdrop_date datetime not null default '0001-01-01 01:00:00',	-휴면, 탈퇴일자
+primary key(hidx,hid)		-자동 증가 값과 아이디는 중복 불가라는 의미
+); => 5.5 이상에서만 가동이 됨
+
+[배열로 한번에 받는 경우]
+hpart tinytext null,
+이 경우 1,0,0,0,1 이렇게 들어온다!
+
+[따로따로 받는 경우]
+hpart1 char(1) null default '0', =>hpart1 이라는 항목에서 1자 짜리 문자로 받겠다는 의미이고 기본 값이 0이며 체크시 1로 전환
+hpart2 char(1) null default '0',
+hpart3 char(1) null default '0',
+hpart4 char(1) null default '0',
+hpart5 char(1) null default '0',
+
+예전에는 비번을 숫자로 저장해도 그닥문제 없었지만 
+요즘엔 걸려서 문자형으로 저장해야함
+(암호화)
+- base64
+- AES 
+- SHA
+- MD5 => 여기까지는 250자까지 넣어도 되긴 됨
+- HASH => 근데 이것까지 쓰게 되면 tinytext 써야됨
+- 복합사용: ex) base64 + md5 병용
+
+[update] - 수정
+update 테이블명 set 필드명 ='변경할 값' where 필드명 ='중복되지 않는 값';
+
+[alter] - Table에서 컬럼을 조정할때 사용합니다.
+alter table 테이블명 add 필드명 필드 속성; (table 필드를 추가) - 추가하는 위치 정해주지 않으면 맨 밑에 생성됨
+alter table 테이블명 add 필드명 필드 속성 after(before) 위치 필드명; (after : 해당 필드명 아래에 생성/ before : 해당 필드명 위에 생성)
+alter table 테이블명 drop 필드명;  	                (table 필드를 삭제)
+alter table 테이블명 modify 필드명 필드속성;(해당 필드의 속성을 변경 할 수 있음)
+※ 단, 필드속성 중 null에 대한 부분은 명확해야 합니다. 데이터가 이미 null로 되어있을 때는 not null로 처리가 안됩니다. 
+update를 이용하여 해당 필드에 있는 데이터를 모두 삭제 후에 not null을 적용해야 합니다.
+
+insert into h_member (hidx,hid,hpass,hemail,htel,hcity,hpart,hage,hindate,hdrop_date,haddr)\
+values('0','kim',sha('a123456'),'kim@gmail.com','01044263981','02','0,1,1,0,0','20대','2022-07-04 14:05:00','0001-01-01 01:00:00','서울특별시 신촌로 22');
+
+[백업]
+mysqldump -u 사용자명 -p 데이터베이스이름 > 경로\데이터 베이스명.sql
+
+[복구]
+mysql -u 사용자명 -p 데이터 베이스명 < 경로\데이터 베이스명.sql

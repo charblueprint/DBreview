@@ -1,0 +1,10 @@
+http : 80
+https : 443
+FTP : 21
+SSH : 22
+SMTP : 25
+POP3(PC 다운로드) : 110
+IMAP(PC 다운로드 + 서버에 Mail 저장) : 143
+
+MySQL : 3306 
+MSSQL : 1433
